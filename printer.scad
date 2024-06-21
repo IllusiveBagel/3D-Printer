@@ -23,10 +23,7 @@ bed_height = 110;
 // 2020 Frame
 frame(bed_size,frame_spacing);
 
-// Linear Rails
-rail_vector=[-((bed_size/2)+frame_spacing),bed_size+((frame_spacing*2)+65.5),-((bed_size/2)+frame_spacing)];
-rotate(90,[1,0,0]) translate(rail_vector) rail(bed_size+(frame_spacing*2));
-rotate(90,[1,0,0]) rotate(180,[0,1,0]) translate(rail_vector) rail(bed_size+(frame_spacing*2));
+// Z-Axis
 
 // Z-axis Rods
 z_rod_x = ((bed_size/2)+(frame_spacing+10)+1);
@@ -92,3 +89,16 @@ translate([0,0,bed_height+16]) bed(bed_size);
 // Z-Axis Motor
 translate([0,(bed_size/2)+(frame_spacing-21),60]) z_motor_mount();
 translate([0,(bed_size/2)+(frame_spacing-21),23]) stepper_motor(true);
+
+// Y-Axis
+
+// Linear Rails
+//rail_vector=[-((bed_size/2)+frame_spacing),bed_size+((frame_spacing*2)+65.5),-((bed_size/2)+frame_spacing)];
+//rotate(90,[1,0,0]) translate(rail_vector) rail(bed_size+(frame_spacing*2));
+//rotate(90,[1,0,0]) rotate(180,[0,1,0]) translate(rail_vector) rail(bed_size+(frame_spacing*2));
+
+rail_x = (bed_size/2)+(frame_spacing+10);
+rail_y = -((bed_size/2)+frame_spacing);
+rail_z = (bed_size+(frame_spacing*2)+80);
+translate([rail_x,rail_y,rail_z]) rotate(-90,[1,0,0]) rail(bed_size+(frame_spacing*2));
+translate([-rail_x,rail_y,rail_z]) rotate(-90,[1,0,0]) rail(bed_size+(frame_spacing*2));

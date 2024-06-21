@@ -13,6 +13,7 @@ module carriage() {
 }
 
 module rail(length) {
+    translate([-4.5,0,0]) rotate(-90,[0,0,1]) {
     color("silver", 1.0) difference() {
         linear_extrude(length) polygon([[0,0],[3.2,0],[4,1],[4.8,0],[6,0],[6,9],[4.8,9],[4,8],[3.2,9],[0,9]]);
 
@@ -22,6 +23,7 @@ module rail(length) {
     }
 
     translate([2,-5.5,length/2-20]) carriage();
+    }
 }
 
 rail(300);

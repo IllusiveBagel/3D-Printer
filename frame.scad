@@ -80,12 +80,6 @@ module frame(bed_size,frame_spacing) {
         rotate(180,[0,0,1]) translate(side_bracket_vector) bracket();
         rotate(270,[0,0,1]) translate(side_bracket_vector) bracket();
     }
-
-    // Top Brackets
-    rotate(90,[0,1,0]) translate([-corner_length+20,-bracket_corner,bracket_corner+1.5]) bracket();
-    rotate(180,[0,0,1]) rotate(90,[0,1,0]) translate([-corner_length+20,-bracket_corner,bracket_corner+1.5]) bracket();
-    rotate(90,[0,1,0]) translate([-corner_length+20,-bracket_corner,-bracket_corner-18.5]) bracket();
-    rotate(180,[0,0,1]) rotate(90,[0,1,0]) translate([-corner_length+20,-bracket_corner,-bracket_corner-18.5]) bracket();
 }
 
 frame(220);
