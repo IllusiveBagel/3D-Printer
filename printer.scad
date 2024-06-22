@@ -11,6 +11,7 @@ use <printed/bed_rail_clip.scad>
 use <printed/bed_mount.scad>
 use <printed/z_motor_mount.scad>
 use <printed/z_nut_mount.scad>
+use <printed/x_axis_mount.scad>
 
 use <frame.scad>
 use <bed_frame.scad>
@@ -37,16 +38,16 @@ color("silver", 1.0) {
 }
 
 // Z-axis Rod Caps
-translate([z_rod_x+1.5,z_rod_y,62]) rod_cap();
-translate([z_rod_x+1.5,-z_rod_y,62]) rod_cap();
-rotate(180,[0,0,1]) translate([z_rod_x+1.5,z_rod_y,62]) rod_cap();
-rotate(180,[0,0,1]) translate([z_rod_x+1.5,-z_rod_y,62]) rod_cap();
+translate([z_rod_x-1,z_rod_y,62]) rod_cap();
+translate([z_rod_x-1,-z_rod_y,62]) rod_cap();
+rotate(180,[0,0,1]) translate([z_rod_x-1,z_rod_y,62]) rod_cap();
+rotate(180,[0,0,1]) translate([z_rod_x-1,-z_rod_y,62]) rod_cap();
 
 z_rod_z=-(bed_size+(frame_spacing*2)+58);
-rotate(180,[0,1,0]) translate([z_rod_x+2.5,z_rod_y,z_rod_z]) rod_cap();
-rotate(180,[0,1,0]) translate([z_rod_x+2.5,-z_rod_y,z_rod_z]) rod_cap();
-rotate(180,[1,0,0]) translate([z_rod_x+2.5,z_rod_y,z_rod_z]) rod_cap();
-rotate(180,[1,0,0]) translate([z_rod_x+2.5,-z_rod_y,z_rod_z]) rod_cap();
+rotate(180,[0,1,0]) translate([z_rod_x-1,z_rod_y,z_rod_z]) rod_cap();
+rotate(180,[0,1,0]) translate([z_rod_x-1,-z_rod_y,z_rod_z]) rod_cap();
+rotate(180,[1,0,0]) translate([z_rod_x-1,z_rod_y,z_rod_z]) rod_cap();
+rotate(180,[1,0,0]) translate([z_rod_x-1,-z_rod_y,z_rod_z]) rod_cap();
 
 // Z-Axis Bearings
 translate([z_rod_x,z_rod_y,bed_height]) linear_bearing();
@@ -93,12 +94,13 @@ translate([0,(bed_size/2)+(frame_spacing-21),23]) stepper_motor(true);
 // Y-Axis
 
 // Linear Rails
-//rail_vector=[-((bed_size/2)+frame_spacing),bed_size+((frame_spacing*2)+65.5),-((bed_size/2)+frame_spacing)];
-//rotate(90,[1,0,0]) translate(rail_vector) rail(bed_size+(frame_spacing*2));
-//rotate(90,[1,0,0]) rotate(180,[0,1,0]) translate(rail_vector) rail(bed_size+(frame_spacing*2));
-
 rail_x = (bed_size/2)+(frame_spacing+10);
 rail_y = -((bed_size/2)+frame_spacing);
 rail_z = (bed_size+(frame_spacing*2)+80);
 translate([rail_x,rail_y,rail_z]) rotate(-90,[1,0,0]) rail(bed_size+(frame_spacing*2));
 translate([-rail_x,rail_y,rail_z]) rotate(-90,[1,0,0]) rail(bed_size+(frame_spacing*2));
+
+// X-Axis
+x_mount_vector = [-((bed_size/2)+(frame_spacing+10)),0,(bed_size+(frame_spacing*2))+80];
+translate(x_mount_vector) x_axis_mount();
+mirror([1,0,0]) translate(x_mount_vector) x_axis_mount();
